@@ -4,7 +4,7 @@ import { Row, Badge, Modal, Button } from "react-bootstrap";
 // npm packages
 import axios from "axios";
 //COMPONENT
-import SingleUser from "./SingleUser";
+import SingleLesson from "./SingleLesson";
 
 const List = () => {
   const [itemsList, setItemsList] = useState([]); // itemsList'i state olarak oluşturuyoruz.
@@ -142,7 +142,7 @@ const List = () => {
 
       <Row style={{ listStyleType: "none" }}>
         {itemsList.map((item, idx) => (
-          <SingleUser user={item} key={idx} />
+          <SingleLesson user={item} key={idx} />
         ))}
       </Row>
     </div>

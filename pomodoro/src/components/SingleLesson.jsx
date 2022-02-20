@@ -30,7 +30,7 @@ const SingleUser = ({ user }) => {
     window.location.reload();
   };
 
-  // Ders tamamlandığında oluşacak işlemler
+  // Ders tamamlandığında oluşacak işlemler, bu fonksyinu Countdown içerisinde çalıştırdık.
   const alertMessage = () => {
     return (
       <div>
@@ -50,7 +50,8 @@ const SingleUser = ({ user }) => {
     // countdown componenti için renderer fonksiyonu oluşturuyoruz.
     if (completed) {
       // Render a completed state
-      return alertMessage(user.id);
+      return <AudioPlay />; // ders tamamlandığında çalışacak olan fonksiyonu çağırıyoruz. Ses dosyasını çalıyoruz.
+      //alertMessage();
     } else {
       // Render a countdown
       return (
@@ -80,6 +81,21 @@ const SingleUser = ({ user }) => {
     setChecked(true);
   };
 
+  // Her ders bitiminde ses çalacak olan kısım oluşturuluyor.
+  const AudioPlay = () => {
+    // audio play
+    const audio = new Audio(
+      "https://www.soundjay.com/misc/sounds/bell-ringing-04.mp3"
+    );
+    audio.play();
+
+    return (
+      <div>
+        <audio autoPlay />
+      </div>
+    );
+  };
+
   return (
     <Col>
       <div className="bg-dark" style={{ border: "1px solid black" }}>
@@ -100,7 +116,7 @@ const SingleUser = ({ user }) => {
               <Countdown
                 date={Date.now() + 1500000}
                 renderer={renderer}
-                onComplete={() => alert(user.id + " dersi tamamlandı")}
+                onComplete={() => alertMessage()}
               />
             </div>
             <label>
